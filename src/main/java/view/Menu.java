@@ -1,20 +1,25 @@
 package view;
 
+import java.awt.TrayIcon.MessageType;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class Menu {
 
 	Scanner teclado = new Scanner(System.in);
 	
 	public void apresentarMenu() {
-		System.out.println("Sistema Gerenciador de Coleções");
-		System.out.println("\nOpções:");
-		System.out.println("1 - Menu Colecionador");
-		System.out.println("2 - Menu Artefato");
-		System.out.println("3 - Menu Coleção");
-		System.out.println("4 - Sair");
-		System.out.print("\nDigite a Opção: ");
-		int opcao = Integer.parseInt(teclado.next());
+		
+		int opcao = -1;
+		try {
+			opcao = Integer.parseInt(JOptionPane.showInputDialog(criarOpcoesMenu()));
+		}catch(NumberFormatException ex) {
+			JOptionPane.showMessageDialog(null, "Valor informado deve ser um número inteiro entre 1 e 4");
+//			JOptionPane.showMessageDialog(null, 
+//					"Valor informado deve ser um número inteiro entre 1 e 4", "Erro", MessageType.ERROR);
+		}
+
 		while (opcao != 4){
 			switch(opcao){
 				case 1: {
@@ -33,17 +38,30 @@ public class Menu {
 					break;
 				}
 				default: {
-					System.out.println("\nOpção Inválida");
+					JOptionPane.showMessageDialog(null, "Opção Inválida");
 				}
 			}
-			System.out.println("Sistema Gerenciador de Coleções");
-			System.out.println("\nOpções:");
-			System.out.println("1 - Menu Colecionador");
-			System.out.println("2 - Menu Artefato");
-			System.out.println("3 - Menu Coleção");
-			System.out.println("4 - Sair");
-			System.out.print("\nDigite a Opção: ");
-			opcao = Integer.parseInt(teclado.next());
+			
 		}
+		//Selecionou 4 - Sair
+		int resposta = JOptionPane.showConfirmDialog(null, "Tem certeza?");
+		
+		if(resposta == 0) {
+			JOptionPane.showMessageDialog(null, "tchau!");
+		}else if(resposta == 1) {
+			JOptionPane.showInputDialog(criarOpcoesMenu());
+		}
+	}
+
+	private String criarOpcoesMenu() {
+		String mensagem = "Sistema Gerenciador de Coleções";
+		mensagem += "\n Opções:";
+		mensagem += "\n 1 - Menu Colecionador";
+		mensagem += "\n 2 - Menu Artefato";
+		mensagem += "\n 3 - Menu Coleção";
+		mensagem += "\n 4 - Sair";
+		mensagem +="\n Digite a Opção: ";
+		
+		return mensagem;
 	}
 }
