@@ -18,7 +18,7 @@ public class Menu {
 			JOptionPane.showMessageDialog(null, "Valor informado deve ser um número inteiro entre 1 e 4");
 //			JOptionPane.showMessageDialog(null, 
 //					"Valor informado deve ser um número inteiro entre 1 e 4", "Erro", MessageType.ERROR);
-		}
+		} 
 
 		while (opcao != 4){
 			switch(opcao){
