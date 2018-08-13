@@ -4,6 +4,15 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Classe criada na disciplina de POO (2018/1)
+ * 
+ * Representa um menu de uma aplicação.
+ * Inicialmente com entrada de dados via console e em seguida com GUI Java Swing.
+ * 
+ * @author Adriano de Melo
+ * 
+ */
 public class Menu {
 
 	Scanner teclado = new Scanner(System.in);
