@@ -1,30 +1,37 @@
 package model.bo;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+
 import model.dao.ColecionadorDAO;
 import model.vo.ColecionadorVO;
 
+/**
+ * Classe criada na disciplina de POO (2018/1)
+ * @author Adriano de Melo
+ *
+ */
 public class ColecionadorBO {
 
-	public void cadastrarColecionadorBO(ColecionadorVO colecionadorVO) {
+	public void cadastrarColecionadorBO(ColecionadorVO colecionadorVO) throws SQLException {
 		ColecionadorDAO colecionadorDAO = new ColecionadorDAO();
 		if(colecionadorDAO.existeRegistroPorCpf(colecionadorVO.getCpf())){
 			System.out.println("\nColecionador já Cadastrado");
 		} else {
-			int resultado = colecionadorDAO.cadastrarColecionadorDAO(colecionadorVO);
-			if(resultado == 1){
+			int idColecionador = colecionadorDAO.inserir(colecionadorVO);
+			if(idColecionador > 0){
 				System.out.println("\nColecionador cadastrado com Sucesso.");
 			} else {
-				System.out.println("\nNão foi possível cadastrat o Colecionador.");
+				System.out.println("\nNão foi possível cadastrar o Colecionador.");
 			}
 		}
 	}
 
-	public void excluirColecionadorBO(ColecionadorVO colecionadorVO) {
+	public void excluirColecionadorBO(ColecionadorVO colecionadorVO) throws SQLException {
 		ColecionadorDAO colecionadorDAO = new ColecionadorDAO();
 		if(colecionadorDAO.existeRegistroPorIdColecionador(colecionadorVO.getIdColecionador())){
-			int resultado = colecionadorDAO.excluirColecionadorDAO(colecionadorVO);
-			if(resultado == 1){
+			boolean excluiuColecionador = colecionadorDAO.excluir(colecionadorVO.getIdColecionador());
+			if(excluiuColecionador){
 				System.out.println("\nColecionador excluído com Sucesso.");
 			} else {
 				System.out.println("\nNão foi possível excluir o Colecionador.");
@@ -34,11 +41,11 @@ public class ColecionadorBO {
 		}
 	}
 
-	public void atualizarColecionadorBO(ColecionadorVO colecionadorVO) {
+	public void atualizarColecionadorBO(ColecionadorVO colecionadorVO) throws SQLException {
 		ColecionadorDAO colecionadorDAO = new ColecionadorDAO();
 		if(colecionadorDAO.existeRegistroPorIdColecionador(colecionadorVO.getIdColecionador())){
-			int resultado = colecionadorDAO.atualizarColecionadorDAO(colecionadorVO);
-			if(resultado == 1){
+			boolean sucessoUpdate = colecionadorDAO.atualizar(colecionadorVO, colecionadorVO.getIdColecionador());
+			if(sucessoUpdate){
 				System.out.println("\nColecionador atualizado com Sucesso.");
 			} else {
 				System.out.println("\nNão foi possível atualizar o Colecionador.");
@@ -48,18 +55,18 @@ public class ColecionadorBO {
 		}
 	}
 	
-	public ArrayList<ColecionadorVO> consultarColecionadoresBO() {
+	public ArrayList<ColecionadorVO> consultarColecionadoresBO() throws SQLException {
 		ColecionadorDAO colecionadorDAO = new ColecionadorDAO();
-		ArrayList<ColecionadorVO> colecionadoresVO = colecionadorDAO.consultarTodosColecionadoresDAO();
+		ArrayList<ColecionadorVO> colecionadoresVO = (ArrayList<ColecionadorVO>) colecionadorDAO.listarTodos();
 		if(colecionadoresVO.isEmpty()){
 			System.out.println("\nLista de Colecionador não Localizada.");
 		}
 		return colecionadoresVO;
 	}
 
-	public ColecionadorVO consultarColecionadorBO(ColecionadorVO colecionadorVO) {
+	public ColecionadorVO consultarColecionadorBO(ColecionadorVO colecionadorVO) throws SQLException {
 		ColecionadorDAO colecionadorDAO = new ColecionadorDAO();
-		ColecionadorVO colecionador = colecionadorDAO.consultarColecionadorDAO(colecionadorVO);
+		ColecionadorVO colecionador = colecionadorDAO.pesquisarPorId(colecionadorVO.getIdColecionador());
 		if(colecionador == null){
 			System.out.println("\nColecionador não Localizado.");
 		}

@@ -2,12 +2,29 @@ package view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import controller.ControladoraColecao;
 import model.vo.ColecaoVO;
 
+/**
+ * Classe criada na disciplina de POO (2018/1)
+ * 
+ * Representa um menu de CRUD de coleções.
+ * Entrada de dados via console.
+ * 
+ * @author Adriano de Melo
+ * 		   Vilmar César Pereira Júnior (continuação em Desenvolvimento Desktop 2018/2)
+ * 
+ */
 public class MenuColecao {
 	
 	Scanner teclado = new Scanner(System.in);
+	
+	//TODO criar constantes para cada opção do sistema
+	
+	public void apresentarMenuColecionadorGUI(){
+		//TODO implementar com JOptionPane
+	}
 
 	public void apresentaMenuColecao() {
 		System.out.println("\n\nSistema Gerenciador de Coleções \n-------- Menu Coleção --------");

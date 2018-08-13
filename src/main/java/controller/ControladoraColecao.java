@@ -1,8 +1,14 @@
 package controller;
 
 import java.util.ArrayList;
+
 import model.vo.ColecaoVO;
 
+/**
+ * Classe criada na disciplina de POO (2018/1)
+ * @author Adriano de Melo
+ *
+ */
 public class ControladoraColecao {
 
 	public void cadastrarColecaoController(ColecaoVO colecaoVO) {

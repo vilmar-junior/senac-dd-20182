@@ -1,5 +1,13 @@
 package model.vo;
 
+/**
+ * Classe criada na disciplina de POO (2018/1)
+ * 
+ * Representa um Value Object (VO) de um Artefato
+ * 
+ * @author Adriano de Melo
+ * 
+ */
 public class ArtefatoVO {
 	
 	private int idArtefato;
