@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Interface que descreve os métodos mínimos para que qualquer Data Access Object (DAO) 
- * deve implementar.
+ * Classe abstrata com os métodos mínimos para que qualquer Data Access Object (DAO).
  * 
  * @author Vilmar César Pereira Júnior
  * @param T o tipo da entidade (ou VO) que associada ao DAO específico
