@@ -2,9 +2,19 @@ package view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import controller.ControladoraColecao;
 import model.vo.ColecaoVO;
 
+/**
+ * Classe criada na disciplina de POO (2018/1)
+ * 
+ * Representa um menu de CRUD de coleções.
+ * Entrada de dados via console.
+ * 
+ * @author Adriano de Melo
+ * 
+ */
 public class MenuColecao {
 	
 	Scanner teclado = new Scanner(System.in);

@@ -5,8 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import model.vo.ColecionadorVO;
 
+/**
+ * Classe criada na disciplina de POO (2018/1)
+ * @author Adriano de Melo
+ * 
+ */
 public class ColecionadorDAO {
 
 	public int cadastrarColecionadorDAO(ColecionadorVO colecionadorVO) {

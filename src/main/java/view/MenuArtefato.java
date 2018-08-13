@@ -2,9 +2,19 @@ package view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import controller.ControladoraArtefato;
 import model.vo.ArtefatoVO;
 
+/**
+ * Classe criada na disciplina de POO (2018/1)
+ * 
+ * Representa um menu de CRUD de um artefato.
+ * Entrada de dados via console.
+ * 
+ * @author Adriano de Melo
+ * 
+ */
 public class MenuArtefato {
 	
 	Scanner teclado = new Scanner(System.in);

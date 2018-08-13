@@ -7,13 +7,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Classe criada na disciplina de POO (2018/1)
+ * @author Adriano de Melo
+ * 
+ */
 public class Banco {
 
 	private static final String driver = "com.mysql.jdbc.Driver";
-	private static final String banco = "dbcolecao";
+	private static final String banco = "db_dev_desktop_20181";
 	private static final String conexao = "jdbc:mysql://localhost:3306/" + banco;
 	private static final String user = "root";
-	private static final String password = "";
+	private static final String password = "1234";
 	
 	public static Connection getConnection(){
 		try {

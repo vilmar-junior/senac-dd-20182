@@ -1,9 +1,15 @@
 package model.bo;
 
 import java.util.ArrayList;
+
 import model.dao.ColecionadorDAO;
 import model.vo.ColecionadorVO;
 
+/**
+ * Classe criada na disciplina de POO (2018/1)
+ * @author Adriano de Melo
+ *
+ */
 public class ColecionadorBO {
 
 	public void cadastrarColecionadorBO(ColecionadorVO colecionadorVO) {
