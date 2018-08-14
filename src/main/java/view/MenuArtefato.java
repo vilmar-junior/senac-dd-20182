@@ -13,11 +13,18 @@ import model.vo.ArtefatoVO;
  * Entrada de dados via console.
  * 
  * @author Adriano de Melo
+ * 		   Vilmar César Pereira Júnior (continuação em Desenvolvimento Desktop 2018/2)
  * 
  */
 public class MenuArtefato {
 	
 	Scanner teclado = new Scanner(System.in);
+	
+	//TODO criar constantes para cada opção do sistema
+	
+	public void apresentarMenuColecionadorGUI(){
+		//TODO implementar com JOptionPane
+	}
 
 	public void apresentaMenuArtefato() {
 		System.out.println("\n\nSistema Gerenciador de Coleções \n-------- Menu Artefato --------");
