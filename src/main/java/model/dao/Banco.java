@@ -51,17 +51,6 @@ import java.sql.Statement;
  */
 public class Banco {
 
-<<<<<<< HEAD
-	
-	private static final String driver = "com.mysql.jdbc.Driver";
-	private static final String banco = "db_dev_desktop_20181";
-	private static final String conexao = "jdbc:mysql://localhost:3306/" + banco;
-	private static final String user = "root";
-	private static final String password = "1234";
-	
-	
-	public static Connection getConnection(){
-=======
 	private static final String DRIVER_MYSQL = "com.mysql.jdbc.Driver";
 	private static final String NOME_ESQUEMA = "db_dev_desktop_20181";
 	private static final String URL_CONEXAO = "jdbc:mysql://localhost:3306/" + NOME_ESQUEMA;
@@ -82,7 +71,7 @@ public class Banco {
 	 *             caso a URL_CONEXAO, USUARIO e/ou SENHA estejam incorretos.
 	 */
 	public static Connection getConnection() {
->>>>>>> branch 'master' of https://github.com/vilmar-junior/senac-dd-20182.git
+
 		try {
 			Connection conn = null;
 			Class.forName(DRIVER_MYSQL);
