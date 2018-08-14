@@ -1,5 +1,6 @@
 package view;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,13 +14,20 @@ import model.vo.ColecionadorVO;
  * Entrada de dados via console.
  * 
  * @author Adriano de Melo
+ * 		   Vilmar César Pereira Júnior (continuação em Desenvolvimento Desktop 2018/2)
  * 
  */
 public class MenuColecionador {
 	
-	Scanner teclado = new Scanner(System.in);
+	private Scanner teclado = new Scanner(System.in);
+	
+	//TODO criar constantes para cada opção do sistema
+	
+	public void apresentarMenuColecionadorGUI(){
+		//TODO implementar com JOptionPane
+	}
 
-	public void apresentaMenuColecionador() {
+	public void apresentaMenuColecionador() throws SQLException {
 		System.out.println("\n\nSistema Gerenciador de Coleções \n-------- Menu Colecionador --------");
 		System.out.println("\nOpções:");
 		System.out.println("1 - Cadastrar Colecionador");
@@ -63,7 +71,7 @@ public class MenuColecionador {
 		}
 	}
 	
-	private void cadastrarColecionador() {
+	private void cadastrarColecionador() throws SQLException {
 		teclado.nextLine();
 		ColecionadorVO colecionadorVO = new ColecionadorVO();
 		System.out.print("\nDigite o nome do Colecionador: ");
@@ -79,7 +87,7 @@ public class MenuColecionador {
 		controladoraColecionador.cadastrarColecionadorController(colecionadorVO);
 	}
 
-	private void consultarColecionador() {
+	private void consultarColecionador() throws SQLException {
 		System.out.println("\nInforme o tipo de consulta a ser realizada");
 		System.out.println("1 - Consultar todos os Colecionadores");
 		System.out.println("2 - Consultar um Colecionador Específico");
@@ -125,7 +133,7 @@ public class MenuColecionador {
 		}
 	}
 
-	private void atualizarColecionador() {
+	private void atualizarColecionador() throws SQLException {
 		ColecionadorVO colecionadorVO = new ColecionadorVO();
 		System.out.print("\nInforme o código do Colecionador: ");
 		colecionadorVO.setIdColecionador(Integer.parseInt(teclado.next()));
@@ -143,7 +151,7 @@ public class MenuColecionador {
 		controladoraColecionador.atualizarColecionadorController(colecionadorVO);
 	}
 
-	private void excluirColecionador() {
+	private void excluirColecionador() throws SQLException {
 		ColecionadorVO colecionadorVO = new ColecionadorVO();
 		System.out.print("\nInforme o código do Colecionador: ");
 		colecionadorVO.setIdColecionador(Integer.parseInt(teclado.next()));
