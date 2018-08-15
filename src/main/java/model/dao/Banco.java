@@ -159,9 +159,19 @@ public class Banco {
 	 * @throws SQLException
 	 * 
 	 */
-	public static PreparedStatement getPreparedStatement(Connection conn) {
+	public static PreparedStatement getPreparedStatement(Connection conn, String sql) {
 		try {
-			PreparedStatement stmt = null;
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			return stmt;
+		} catch (Exception e) {
+			System.out.println("Erro ao obter o PreparedStatement.");
+			return null;
+		}
+	}
+	
+	public static PreparedStatement getPreparedStatement(Connection conn, String sql, int tipoRetorno) {
+		try {
+			PreparedStatement stmt = conn.prepareStatement(sql, tipoRetorno);
 			return stmt;
 		} catch (Exception e) {
 			System.out.println("Erro ao obter o PreparedStatement.");
