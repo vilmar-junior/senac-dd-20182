@@ -27,12 +27,13 @@ public abstract class BaseDAO<T> {
 	 * @throws SQLException
 	 */
     public int inserir(T entidade) throws SQLException{
+    	//SQL: 	INSERT INTO NOMETABELA (atributo1, atributo2,... atributoN) VALUES (?,?,...?)
+    	String query = "INSERT INTO " + getNomeTabela() + " (" + getNomesColunasInsert() +") VALUES (" + getInterrogacoesInsert() + ")";
+    	
     	Connection conn = Banco.getConnection();
-		PreparedStatement preparedStmt = Banco.getPreparedStatement(conn);
+		PreparedStatement preparedStmt = Banco.getPreparedStatement(conn, query);
 		int idEntidadeSalva = -1;
 		
-		//SQL: 	INSERT INTO NOMETABELA (atributo1, atributo2,... atributoN) VALUES (?,?,...?)
-		String query = "INSERT INTO " + getNomeTabela() + " (" + getNomesColunasInsert() +") VALUES (" + getInterrogacoesInsert() + ")";
 		try {
 			//Este método DEVE ser implementado na classe concreta
 			this.setValoresAtributosInsert(entidade, preparedStmt);
@@ -52,15 +53,16 @@ public abstract class BaseDAO<T> {
 		return idEntidadeSalva;
     }
 	public boolean atualizar(T entidade, int idEntidade) throws SQLException{
+		//SQL: 	UPDATE NOMETABELA SET atributo1 = valor1, atributo2 = valor 2,... atributoN = valorN) WHERE IDTABELA = idEntidade
+		String sql = "UPDATE "+ getNomeTabela() + " SET " + getValoresClausulaSetUpdate(entidade)
+		+ " WHERE" +  getNomeColunaChavePrimaria() + " = " + idEntidade;
+		
 		Connection conn = Banco.getConnection();
-		PreparedStatement stmt = Banco.getPreparedStatement(conn);
+		PreparedStatement stmt = Banco.getPreparedStatement(conn, sql);
 		boolean sucessoUpdate = false;
 		
-		//SQL: 	UPDATE NOMETABELA SET atributo1 = valor1, atributo2 = valor 2,... atributoN = valorN) WHERE IDTABELA = idEntidade
-		String query = "UPDATE "+ getNomeTabela() + " SET " + getValoresClausulaSetUpdate(entidade)
-		+ " WHERE" +  getNomeColunaChavePrimaria() + " = " + idEntidade;
 		try {
-			int retorno = stmt.executeUpdate(query);
+			int retorno = stmt.executeUpdate(sql);
 			sucessoUpdate = (retorno == CODIGO_RETORNO_SUCESSO_SQL);
 		} catch (SQLException e) {
 			System.out.println("Erro ao atualizar o registro com id = " + idEntidade + "da entidade " + entidade.getClass().toString());
@@ -72,14 +74,15 @@ public abstract class BaseDAO<T> {
     }
     
     public boolean excluir(int idEntidade) throws SQLException{
+    	//SQL: 	DELETE FROM NomeTabela WHERE ID = idEntidade
+    	String sql = "DELETE FROM " + getNomeTabela() + " WHERE " + getNomeColunaChavePrimaria() + " = " + idEntidade;
+    	
     	Connection conn = Banco.getConnection();
-    	PreparedStatement stmt = Banco.getPreparedStatement(conn);
+    	PreparedStatement stmt = Banco.getPreparedStatement(conn, sql);
 		boolean sucessoDelete = false;
 		
-		//SQL: 	DELETE FROM NomeTabela WHERE ID = idEntidade
-		String query = "DELETE FROM " + getNomeTabela() + " WHERE " + getNomeColunaChavePrimaria() + " = " + idEntidade;
 		try{
-			int resultado = stmt.executeUpdate(query);
+			int resultado = stmt.executeUpdate(sql);
 			sucessoDelete = (resultado == CODIGO_RETORNO_SUCESSO_SQL);
 		} catch (SQLException e){
 			System.out.println("Erro ao atualizar o registro com id = " + idEntidade + "da entidade " + this.getClass().toString());
@@ -91,16 +94,16 @@ public abstract class BaseDAO<T> {
     }
     
     public T pesquisarPorId(int idEntidade)throws SQLException{
+    	//SQL: SELECT * FROM NOMETABELA WHERE WHERE ID = idEntidade
+    			String sql = "SELECT * FROM "+ getNomeTabela()+" WHERE " + getNomeColunaChavePrimaria() + " = " + idEntidade;
+    	
     	Connection conn = Banco.getConnection();
-    	PreparedStatement stmt = Banco.getPreparedStatement(conn);
+    	PreparedStatement stmt = Banco.getPreparedStatement(conn, sql);
 		ResultSet resultado = null;
 		T objetoConsultado = null;
 		
-		//SQL: SELECT * FROM NOMETABELA WHERE WHERE ID = idEntidade
-		String query = "SELECT * FROM "+ getNomeTabela()+" WHERE " + getNomeColunaChavePrimaria() + " = " + idEntidade;
-		
 		try{
-			resultado = stmt.executeQuery(query);
+			resultado = stmt.executeQuery(sql);
 			while(resultado.next()){
 			    objetoConsultado = construirObjetoDoResultSet(resultado);
 			}
@@ -115,13 +118,15 @@ public abstract class BaseDAO<T> {
     }
     
 	public List<T> listarTodos() throws SQLException{
+		String sql = "SELECT * FROM " + getNomeTabela();
+		
 		Connection conn = Banco.getConnection();
-		PreparedStatement stmt = Banco.getPreparedStatement(conn);
+		PreparedStatement stmt = Banco.getPreparedStatement(conn, sql);
 		ResultSet resultado = null;
 		ArrayList<T> listaEntidades = new ArrayList<T>();
-		String query = "SELECT * FROM " + getNomeTabela();
+		
 		try{
-			resultado = stmt.executeQuery(query);
+			resultado = stmt.executeQuery(sql);
 			while(resultado.next()){
 				T objetoConsultado = construirObjetoDoResultSet(resultado);
 				listaEntidades.add(objetoConsultado);

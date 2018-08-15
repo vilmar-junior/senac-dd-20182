@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.mysql.jdbc.Statement;
+
 import model.dao.Banco;
 import model.vo.aula05.Produto;
 
@@ -17,7 +19,7 @@ public class ProdutoDAO {
 				+ "VALUES (?,?,?,?)";
 
 		Connection conexao = Banco.getConnection();
-		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao);
+		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql, Statement.RETURN_GENERATED_KEYS);
 
 		try {
 			prepStmt.setString(1, p.getNome());
@@ -25,12 +27,14 @@ public class ProdutoDAO {
 			prepStmt.setDouble(3, p.getValor());
 			prepStmt.setDouble(4, p.getPeso());
 
-			prepStmt.executeUpdate(sql);
+			prepStmt.execute();
 
-			ResultSet rs = prepStmt.getGeneratedKeys();
-			novoId = rs.getInt(1);
+			ResultSet generatedKeys = prepStmt.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				novoId = generatedKeys.getInt(1);
+			}
 		} catch (SQLException e) {
-			System.out.println("Erro ao inserir produto");
+			System.out.println("Erro ao inserir produto. Causa: \n: " + e.getMessage());
 		} finally{
 			Banco.closePreparedStatement(prepStmt);
 			Banco.closeConnection(conexao);
@@ -46,7 +50,7 @@ public class ProdutoDAO {
 				+ "WHERE P.ID = ?";
 
 		Connection conexao = Banco.getConnection();
-		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao);
+		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
 
 		try {
 			prepStmt.setString(1, p.getNome());
@@ -55,8 +59,8 @@ public class ProdutoDAO {
 			prepStmt.setDouble(4, p.getPeso());
 			prepStmt.setDouble(5, p.getId());
 
-			int codigoRetorno = prepStmt.executeUpdate(sql);
-			
+			int codigoRetorno = prepStmt.executeUpdate();
+
 			if(codigoRetorno == 1){
 				sucessoUpdate = true;
 			}
