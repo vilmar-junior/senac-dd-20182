@@ -55,7 +55,7 @@ public class Banco {
 	private static final String NOME_ESQUEMA = "db_dev_desktop_20181";
 	private static final String URL_CONEXAO = "jdbc:mysql://localhost:3306/" + NOME_ESQUEMA;
 	private static final String USUARIO = "root";
-	private static final String SENHA = "root";
+	private static final String SENHA = "1234";
 
 	/**
 	 * Estabelece a conexão JBDC considerando as configurações da classe Banco.
@@ -78,10 +78,10 @@ public class Banco {
 			conn = DriverManager.getConnection(URL_CONEXAO, USUARIO, SENHA);
 			return conn;
 		} catch (ClassNotFoundException e) {
-			System.out.println("Classe do Driver não foi encontrada.");
+			System.out.println("Classe do Driver não foi encontrada. \n" + e.getMessage());
 			return null;
 		} catch (SQLException e) {
-			System.out.println("Erro ao obter a Connection.");
+			System.out.println("Erro ao obter a Connection.\n" + e.getMessage());
 			return null;
 		}
 	}

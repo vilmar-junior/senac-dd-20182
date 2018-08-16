@@ -126,5 +126,11 @@ public class ColecionadorDAO extends BaseDAO<ColecionadorVO> {
 		}
 		return false;
 	}
+
+	@Override
+	public void setValoresAtributosUpdate(ColecionadorVO entidade, PreparedStatement stmt) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

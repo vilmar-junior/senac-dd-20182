@@ -16,6 +16,10 @@ public class Produto {
 		this.peso = peso;
 	}
 
+	public Produto() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -54,5 +58,10 @@ public class Produto {
 
 	public void setPeso(double peso) {
 		this.peso = peso;
+	}
+
+	@Override
+	public String toString() {
+		return "Produto [id=" + id + ", nome=" + nome + ", fabricante=" + fabricante + "]";
 	}
 }
