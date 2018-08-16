@@ -1,4 +1,6 @@
-CREATE TABLE `db_dev_desktop_20181`.`PRODUTO` (
+CREATE SCHEMA `db_dev_desktop_20182` ;
+
+CREATE TABLE `db_dev_desktop_20182`.`PRODUTO` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(255) NOT NULL,
   `fabricante` VARCHAR(255) NOT NULL,
@@ -7,7 +9,7 @@ CREATE TABLE `db_dev_desktop_20181`.`PRODUTO` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC));
   
-  CREATE TABLE `db_dev_desktop_20181`.`FUNCIONARIO` (
+  CREATE TABLE `db_dev_desktop_20182`.`FUNCIONARIO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(255) NOT NULL,
   `MATRICULA` VARCHAR(255) NOT NULL,

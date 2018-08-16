@@ -7,6 +7,10 @@ public class Funcionario {
 	private String numeroMatricula;
 	private String cpf;
 	
+	public Funcionario() {
+		
+	}
+	
 	public Funcionario(String nome, String numeroMatricula, String cpf) {
 		super();
 		this.nome = nome;

@@ -23,9 +23,9 @@ public class Executavel {
 		MenuExercicio04 menu = new MenuExercicio04();
 		//menu.apresentarMenu();
 		
-		Funcionario joao = new Funcionario("João Silva", "123-4", "111.111.111-61");
+		Funcionario joao = new Funcionario("João Alterado de Souza", "22555", "333.111.111-61");
 		FuncionarioDAO funcDAO = new FuncionarioDAO();
-		funcDAO.inserir(joao);
+		funcDAO.atualizar(joao, 1);
 		
 //		Produto p = new Produto("Caneta", "Bic", 2.5, 0.15);
 //		ProdutoDAO dao = new ProdutoDAO();

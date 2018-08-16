@@ -50,13 +50,31 @@ public class FuncionarioDAO extends BaseDAO<Funcionario> {
 	
 	@Override
 	public void setValoresAtributosUpdate(Funcionario entidade, PreparedStatement preparedStmt){
-		//TODO Exercício: implementar na aula de 16/10
+		//Preenche cada interrogação da cláusula SET
+		try {
+			preparedStmt.setString(1, entidade.getNome());
+			preparedStmt.setString(2, entidade.getNumeroMatricula());
+			preparedStmt.setString(3, entidade.getCpf());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public Funcionario construirObjetoDoResultSet(ResultSet resultado) {
-		//TODO Exercício: implementar na aula de 16/10
-		return null;
+		
+		Funcionario novoFuncionario = null; //retorna null caso o resultado esteja vazio
+		try {
+			novoFuncionario = new Funcionario();
+			novoFuncionario.setIdFuncionario(resultado.getInt("ID"));
+			novoFuncionario.setNome(resultado.getString("NOME"));
+			novoFuncionario.setNumeroMatricula(resultado.getString("MATRICULA"));
+			novoFuncionario.setCpf(resultado.getString("CPF"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return novoFuncionario;
 	}
 
 }

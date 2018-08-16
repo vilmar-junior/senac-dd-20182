@@ -37,7 +37,8 @@ public abstract class BaseDAO<T> {
 				+ getInterrogacoesInsert() + " ) ";
 
 		Connection conn = Banco.getConnection();
-		PreparedStatement preparedStmt = Banco.getPreparedStatement(conn, query, Statement.RETURN_GENERATED_KEYS);
+		PreparedStatement preparedStmt = Banco.getPreparedStatement(conn, query, 
+				Statement.RETURN_GENERATED_KEYS);
 		int idEntidadeSalva = -1;
 
 		try {
@@ -51,7 +52,8 @@ public abstract class BaseDAO<T> {
 				idEntidadeSalva = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			System.out.println("Erro ao inserir " + entidade.getClass().toString());
+			System.out.println("Erro ao inserir " + entidade.getClass().toString()+ "\n"
+					+ e.getMessage());
 		} finally {
 			Banco.closeStatement(preparedStmt);
 			Banco.closeConnection(conn);
@@ -63,7 +65,7 @@ public abstract class BaseDAO<T> {
 		//SET atributo1 = valor1, atributo2 = valor 2,... atributoN = valorN) WHERE IDTABELA = idEntidade
 		String sql = "UPDATE "+ getNomeTabela() + 
 				" SET " + getValoresClausulaSetUpdate(entidade)
-		+ " WHERE" +  getNomeColunaChavePrimaria() + " = " + idEntidade;
+		+ " WHERE " +  getNomeColunaChavePrimaria() + " = " + idEntidade;
 
 		Connection conn = Banco.getConnection();
 		PreparedStatement stmt = Banco.getPreparedStatement(conn, sql);
@@ -76,7 +78,8 @@ public abstract class BaseDAO<T> {
 			int retorno = stmt.executeUpdate();
 			sucessoUpdate = (retorno == CODIGO_RETORNO_SUCESSO_SQL);
 		} catch (SQLException e) {
-			System.out.println("Erro ao atualizar o registro com id = " + idEntidade + "da entidade " + entidade.getClass().toString());
+			System.out.println("Erro ao atualizar o registro com id = " + idEntidade + "da entidade " + entidade.getClass().toString()+ "\n"
+					+ e.getMessage());
 		} finally {
 			Banco.closeStatement(stmt);
 			Banco.closeConnection(conn);
@@ -96,7 +99,8 @@ public abstract class BaseDAO<T> {
 			int resultado = stmt.executeUpdate(sql);
 			sucessoDelete = (resultado == CODIGO_RETORNO_SUCESSO_SQL);
 		} catch (SQLException e){
-			System.out.println("Erro ao atualizar o registro com id = " + idEntidade + "da entidade " + this.getClass().toString());
+			System.out.println("Erro ao atualizar o registro com id = " + idEntidade + "da entidade " + this.getClass().toString() + "\n"
+					+ e.getMessage());
 		} finally {
 			Banco.closeStatement(stmt);
 			Banco.closeConnection(conn);

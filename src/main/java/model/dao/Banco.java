@@ -52,10 +52,10 @@ import java.sql.Statement;
 public class Banco {
 
 	private static final String DRIVER_MYSQL = "com.mysql.jdbc.Driver";
-	private static final String NOME_ESQUEMA = "db_dev_desktop_20181";
+	private static final String NOME_ESQUEMA = "db_dev_desktop_20182";
 	private static final String URL_CONEXAO = "jdbc:mysql://localhost:3306/" + NOME_ESQUEMA;
 	private static final String USUARIO = "root";
-	private static final String SENHA = "1234";
+	private static final String SENHA = "";
 
 	/**
 	 * Estabelece a conexão JBDC considerando as configurações da classe Banco.
