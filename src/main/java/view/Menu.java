@@ -29,7 +29,7 @@ public class Menu {
 	 * @throws SQLException 
 	 * 
 	 * */
-	public void apresentarMenu() throws SQLException {
+	public void apresentarMenu() {
 
 		int opcao = -1;
 		try {
@@ -43,7 +43,13 @@ public class Menu {
 			switch(opcao){
 			case OPCAO_MENU_COLECIONADOR: {
 				MenuColecionador menuColecionador = new MenuColecionador();
-				menuColecionador.apresentaMenuColecionador();
+				try {
+					menuColecionador.apresentaMenuColecionador();
+				} catch (SQLException excecao) {
+					System.out.println("Deu problema :(");
+					System.out.println("Causa:" + excecao.getCause());
+					System.out.println("Código do BD:" + excecao.getErrorCode());
+				}
 				break;
 			}
 			case OPCAO_MENU_ARTEFATO: {
