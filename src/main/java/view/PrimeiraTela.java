@@ -11,6 +11,7 @@ public class PrimeiraTela extends JFrame {
 		
 		//Mensagem comentada, para dar confusão no git ;)
 		//System.out.println("Alterei e dei commit");
+		System.out.println("Versão final sincronizada em ambas as máquinas");
 		
 		PrimeiraTela tela = new PrimeiraTela();
 		tela.setBounds(0, 0, 200, 200);
