@@ -9,7 +9,7 @@ public class PrimeiraTela extends JFrame {
 
 	public static void main(String[] args) {
 		
-		System.out.println("Alterei e dei commit");
+		System.out.println("Alterei e dei commit no PC do Senac, alterei novamente no notebook");
 		
 		PrimeiraTela tela = new PrimeiraTela();
 		tela.setBounds(0, 0, 200, 200);
