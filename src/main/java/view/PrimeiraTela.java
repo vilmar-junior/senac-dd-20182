@@ -8,6 +8,9 @@ public class PrimeiraTela extends JFrame {
 	private static final long serialVersionUID = 2210495344427947010L;
 
 	public static void main(String[] args) {
+		
+		System.out.println("Alterei e dei commit");
+		
 		PrimeiraTela tela = new PrimeiraTela();
 		tela.setBounds(0, 0, 200, 200);
 		
