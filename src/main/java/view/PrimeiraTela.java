@@ -17,6 +17,8 @@ public class PrimeiraTela extends JFrame {
 		tela.add(lblBoasVindas);
 		lblBoasVindas.setLocation(150, 150);
 		tela.setVisible(true);
+		
+		System.out.println("Alterei no outro computador e dei commit, SEM PULL");
 	}
 
 }
