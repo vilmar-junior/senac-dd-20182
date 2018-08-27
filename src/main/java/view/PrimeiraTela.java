@@ -9,7 +9,8 @@ public class PrimeiraTela extends JFrame {
 
 	public static void main(String[] args) {
 		
-		System.out.println("Alterei e dei commit");
+		//Mensagem comentada, para dar confusão no git ;)
+		//System.out.println("Alterei e dei commit");
 		
 		PrimeiraTela tela = new PrimeiraTela();
 		tela.setBounds(0, 0, 200, 200);
