@@ -1,5 +1,8 @@
 package controller;
 
+
+import java.util.List;
+
 import model.bo.ProdutoBO;
 import model.dao.aula05.ProdutoDAO;
 import model.vo.aula05.Produto;
@@ -8,6 +11,10 @@ public class ProdutoController {
 
 	private ProdutoBO bo = new ProdutoBO();
 
+	public List<Produto> listarTodosProdutos(){
+		return bo.listarProdutos();
+	}
+	 
 	public String salvar(Produto produto) {
 		String validacao = validarProduto(produto);
 
