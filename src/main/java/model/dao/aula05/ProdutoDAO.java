@@ -105,6 +105,38 @@ public class ProdutoDAO {
 		return sucessoDelete;
 	}
 	
+	public ArrayList<Produto> listarPorFaixaDePreco(double valorMaximo){
+		String sql = " SELECT * FROM PRODUTO WHERE VALOR < ? ";
+		
+		Connection conexao = Banco.getConnection();
+		PreparedStatement prepStmt = Banco.getPreparedStatement(conexao, sql);
+		ArrayList<Produto> produtos = new ArrayList<Produto>();
+		
+		try {
+			prepStmt.setDouble(1, valorMaximo);
+			ResultSet result = prepStmt.executeQuery();
+			
+			while(result.next()){
+				Produto p = new Produto();
+				
+				//Obtendo valores pelo NOME DA COLUNA
+				p.setId(result.getInt("ID"));
+				p.setNome(result.getString("NOME"));
+				p.setFabricante(result.getString("FABRICANTE"));
+				
+				//Outra forma de obter (POSICIONAL)
+				p.setValor(result.getDouble(4));
+				p.setPeso(result.getDouble(5));
+				produtos.add(p);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return produtos;
+		
+	}
+	
+	
 	public ArrayList<Produto> listarTodos(){
 		String sql = " SELECT * FROM PRODUTO ";
 		
@@ -113,7 +145,7 @@ public class ProdutoDAO {
 		ArrayList<Produto> produtos = new ArrayList<Produto>();
 		
 		try {
-			ResultSet result = prepStmt.executeQuery(sql);
+			ResultSet result = prepStmt.executeQuery();
 			
 			while(result.next()){
 				Produto p = new Produto();

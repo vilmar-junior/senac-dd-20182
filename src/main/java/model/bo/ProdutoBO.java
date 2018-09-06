@@ -21,8 +21,14 @@ public class ProdutoBO {
 		boolean sucesso = dao.atualizar(produto);
 		return sucesso;
 	}
+	
 	public List<Produto> listarProdutos() {
 		ArrayList<Produto> produtos = dao.listarTodos();
+		return produtos;
+	}
+	
+	public List<Produto> listarProdutosPorFaixaDePreco(double precoMax) {
+		ArrayList<Produto> produtos = dao.listarPorFaixaDePreco(precoMax);
 		return produtos;
 	}
 }

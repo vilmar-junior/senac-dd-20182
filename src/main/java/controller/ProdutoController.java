@@ -14,6 +14,10 @@ public class ProdutoController {
 	public List<Produto> listarTodosProdutos(){
 		return bo.listarProdutos();
 	}
+	
+	public List<Produto> listarProdutosAtePreco(double maximo){
+		return bo.listarProdutosPorFaixaDePreco(maximo);
+	}
 	 
 	public String salvar(Produto produto) {
 		String validacao = validarProduto(produto);
