@@ -1,9 +1,11 @@
 package model.dao.aula05;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import model.dao.Banco;
 import model.dao.BaseDAO;
 import model.vo.aula05.Funcionario;
 
@@ -77,4 +79,27 @@ public class FuncionarioDAO extends BaseDAO<Funcionario> {
 		return novoFuncionario;
 	}
 
+	public boolean temCPFCadastrado(String cpf) {
+		String sql = "SELECT COUNT(*) FROM FUNCIONARIO WHERE CPF = ?";
+		boolean temFuncionarioComEsseCPF = false;
+		
+		Connection conn = Banco.getConnection();
+		PreparedStatement stmt = Banco.getPreparedStatement(conn, sql);
+		ResultSet resultado = null;
+		try{
+			stmt.setString(1, cpf);
+			resultado = stmt.executeQuery();
+			while(resultado.next()){
+				int quantidadeRegistros = resultado.getInt(1);
+				temFuncionarioComEsseCPF = (quantidadeRegistros > 0);
+			}
+		} catch (SQLException e){
+			System.out.println("Erro ao consultar o CPF = " + cpf);
+		} finally {
+			Banco.closeResultSet(resultado);
+			Banco.closeStatement(stmt);
+			Banco.closeConnection(conn);
+		}
+		return temFuncionarioComEsseCPF;
+	}
 }

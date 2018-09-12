@@ -26,7 +26,8 @@ public abstract class BaseDAO<T> {
 	/**
 	 * 
 	 * @param entidade a entidade do tipo informado a ser persistida
-	 * @return 
+	 * @return id da entidade salva (caso valor positivo)
+	 *         -1 caso não tenha salvado
 	 * @throws SQLException
 	 */
 	public int inserir(T entidade){

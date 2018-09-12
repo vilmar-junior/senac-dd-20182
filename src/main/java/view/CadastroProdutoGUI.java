@@ -28,6 +28,10 @@ public class CadastroProdutoGUI {
 	protected static final String NOME_VALOR_BARATO = "Barato";
 	protected static final String NOME_VALOR_MEDIO = "Médio";
 	protected static final String NOME_VALOR_CARO = "Caro";
+	
+	protected static final double PRECO_MAXIMO_VALOR_BARATO = 9.99;
+	protected static final double PRECO_MAXIMO_VALOR_MEDIO = 99.9;
+	protected static final double PRECO_MAXIMO_VALOR_CARO = 999999999;
 
 	private ProdutoBO bo = new ProdutoBO();
 	private Produto produto = new Produto();
