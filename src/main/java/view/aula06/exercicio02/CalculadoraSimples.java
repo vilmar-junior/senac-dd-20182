@@ -49,7 +49,7 @@ public class CalculadoraSimples {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 430, 450);
+		frame.setBounds(100, 100, 430, 370);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -66,7 +66,7 @@ public class CalculadoraSimples {
 				txtVisor.setText(novoTextoVisor);
 			}
 		});
-		btnUm.setBounds(20, 112, 117, 29);
+		btnUm.setBounds(20, 110, 117, 40);
 		frame.getContentPane().add(btnUm);
 		
 		JButton btnDois = new JButton("2");
@@ -76,11 +76,11 @@ public class CalculadoraSimples {
 				txtVisor.setText(novoTextoVisor);
 			}
 		});
-		btnDois.setBounds(150, 112, 117, 29);
+		btnDois.setBounds(150, 110, 118, 40);
 		frame.getContentPane().add(btnDois);
 		
 		JButton btnTres = new JButton("3");
-		btnTres.setBounds(280, 112, 117, 29);
+		btnTres.setBounds(280, 110, 120, 40);
 		frame.getContentPane().add(btnTres);
 		
 		JButton btnQuatro = new JButton("4");
@@ -88,31 +88,31 @@ public class CalculadoraSimples {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnQuatro.setBounds(19, 172, 117, 29);
+		btnQuatro.setBounds(20, 172, 117, 40);
 		frame.getContentPane().add(btnQuatro);
 		
 		JButton btnCinco = new JButton("5");
-		btnCinco.setBounds(148, 172, 117, 29);
+		btnCinco.setBounds(150, 172, 117, 40);
 		frame.getContentPane().add(btnCinco);
 		
 		JButton btnSeis = new JButton("6");
-		btnSeis.setBounds(277, 172, 117, 29);
+		btnSeis.setBounds(280, 172, 117, 40);
 		frame.getContentPane().add(btnSeis);
 		
 		JButton btnSete = new JButton("7");
-		btnSete.setBounds(19, 228, 117, 29);
+		btnSete.setBounds(20, 228, 117, 40);
 		frame.getContentPane().add(btnSete);
 		
-		JButton btnOito = new JButton("9");
-		btnOito.setBounds(148, 228, 117, 29);
+		JButton btnOito = new JButton("8");
+		btnOito.setBounds(150, 228, 117, 40);
 		frame.getContentPane().add(btnOito);
 		
-		JButton btn9 = new JButton("3");
-		btn9.setBounds(277, 228, 117, 29);
-		frame.getContentPane().add(btn9);
+		JButton btnNove = new JButton("9");
+		btnNove.setBounds(280, 228, 117, 40);
+		frame.getContentPane().add(btnNove);
 		
 		JButton btnZero = new JButton("0");
-		btnZero.setBounds(148, 287, 117, 29);
+		btnZero.setBounds(150, 287, 117, 29);
 		frame.getContentPane().add(btnZero);
 		
 		JButton btnSoma = new JButton("+");
