@@ -4,8 +4,6 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
@@ -60,14 +58,8 @@ public class Principal extends JFrame {
 		JMenuItem mntmCadastrar = new JMenuItem("Cadastrar");
 		mntmCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CadastroProduto telaCadastro = new CadastroProduto();
-				desktopPane.add(telaCadastro);
-				telaCadastro.show();
-			}
-		});
-		mntmCadastrar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+				
+				//Adiciona a tela de cadastro no painel principal
 				CadastroProduto telaCadastro = new CadastroProduto();
 				desktopPane.add(telaCadastro);
 				telaCadastro.show();
@@ -87,7 +79,6 @@ public class Principal extends JFrame {
 		contentPane.setLayout(null);
 		
 		desktopPane = new JDesktopPane();
-		desktopPane.setBounds(6, 215, 438, -208);
 		contentPane.add(desktopPane);
 	}
 }
