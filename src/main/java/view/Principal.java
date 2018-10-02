@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,7 +31,6 @@ public class Principal extends JFrame {
 			public void run() {
 				try {
 					Principal frame = new Principal();
-					
 					//Inicializa a tela principal MAXIMIZADA
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					
@@ -62,9 +62,17 @@ public class Principal extends JFrame {
 		mntmCadastrarProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//Adiciona a tela de cadastro no painel principal
+				//Chamo o Painel DesktopPane (para mostrar as janelas internas)
+				setContentPane(desktopPane);
+				
+				//Adiciona a tela de cadastro no painel principal (janela interna)
 				CadastroProduto telaCadastro = new CadastroProduto();
 				desktopPane.add(telaCadastro);
+				
+				//Maximiza o novo frame
+				desktopPane.getDesktopManager().maximizeFrame(telaCadastro);
+				
+				//Mostra o frame interno
 				telaCadastro.show();
 			}
 		});
@@ -84,7 +92,9 @@ public class Principal extends JFrame {
 		JMenuItem mntmCadastrarCliente = new JMenuItem("Cadastrar");
 		mntmCadastrarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Ainda não cadastramos clientes :D ");
+				//TODO trocar o PAINEL
+				PanelListagemClientes telaListagemClientes = new PanelListagemClientes();
+				setContentPane(telaListagemClientes);
 			}
 		});
 		mntmCadastrarCliente.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, 0));
@@ -96,7 +106,9 @@ public class Principal extends JFrame {
 		contentPane.setLayout(null);
 		
 		desktopPane = new JDesktopPane();
-		desktopPane.setBounds(10, 10, 800, 600);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		//Constrói o desktopPane com tamanho relativo à tela
+		desktopPane.setBounds(10, 10, screenSize.width - 20, screenSize.height-150);
 		contentPane.add(desktopPane);
 	}
 }
