@@ -7,24 +7,29 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.ProdutoController;
 import model.vo.aula05.Produto;
-import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
 
 public class ListaProdutosGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 	private JTable tblProdutos;
+	
+	//Esta lista de produtos é atualizada a cada nova consulta realizada com os filtros.
+	//Será a lista usada para gerar os relatórios
+	private List<Produto> produtosConsultados;
 	/**
 	 * Launch the application.
 	 */
@@ -47,7 +52,7 @@ public class ListaProdutosGUI extends JFrame {
 	public ListaProdutosGUI() {
 		setTitle("Consulta de Produtos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 494, 329);
+		setBounds(100, 100, 480, 354);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -60,7 +65,7 @@ public class ListaProdutosGUI extends JFrame {
 		
 		String[] precos = {"---Selecione---", CadastroProdutoGUI.NOME_VALOR_BARATO, CadastroProdutoGUI.NOME_VALOR_MEDIO, CadastroProdutoGUI.NOME_VALOR_CARO};
 		final JComboBox cbFiltroPreco = new JComboBox(precos);
-		cbFiltroPreco.setBounds(66, 37, 127, 20);
+		cbFiltroPreco.setBounds(66, 37, 166, 20);
 		contentPane.add(cbFiltroPreco);
 		
 		JLabel lblFiltroPreco = new JLabel("Preço:");
@@ -97,18 +102,40 @@ public class ListaProdutosGUI extends JFrame {
 				"Nome", "Marca", "Peso", "Valor"
 			}
 		));
-		tblProdutos.setBounds(10, 105, 448, 174);
+		tblProdutos.setBounds(10, 105, 462, 174);
 		contentPane.add(tblProdutos);
 		
 		JLabel lblFiltroMarca = new JLabel("Marca:");
-		lblFiltroMarca.setBounds(215, 40, 46, 14);
+		lblFiltroMarca.setBounds(244, 40, 46, 14);
 		contentPane.add(lblFiltroMarca);
 		
 		//TODO preencher com marcas cadastradas no BD
 		JComboBox cbFiltroMarca = new JComboBox();
-		cbFiltroMarca.setBounds(271, 37, 172, 20);
+		cbFiltroMarca.setBounds(300, 37, 172, 20);
 		
 		contentPane.add(cbFiltroMarca);
+		
+		JButton btnGerarXls = new JButton("Gerar XLS");
+		btnGerarXls.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser jfc = new JFileChooser();
+				jfc.setDialogTitle("Salvar relatório como...");
+				
+				int resultado = jfc.showSaveDialog(null);
+				if(resultado == JFileChooser.APPROVE_OPTION){
+					String caminhoEscolhido = jfc.getSelectedFile().getAbsolutePath();
+					
+					ProdutoController produtoController = new ProdutoController();
+					produtoController.gerarRelatorio(produtosConsultados, caminhoEscolhido, ProdutoController.TIPO_RELATORIO_XLS);
+				}
+			}
+		});
+		btnGerarXls.setBounds(100, 291, 117, 29);
+		contentPane.add(btnGerarXls);
+		
+		JButton btnGerarPdf = new JButton("Gerar PDF");
+		btnGerarPdf.setBounds(248, 291, 117, 29);
+		contentPane.add(btnGerarPdf);
 		
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -145,11 +172,17 @@ public class ListaProdutosGUI extends JFrame {
 	}
 
 	protected void atualizarTabelaProdutos(List<Produto> produtos) {
+		//atualiza o atributo produtosConsultados
+		produtosConsultados = produtos;
+		
 		//Limpa a tabela
 		tblProdutos.setModel(new DefaultTableModel(
-				new Object[][] {},
-				new String[] {"Nome", 
-						"Fabricante", "Valor", "Peso"}));
+				new String[][] {
+					{"Nome", "Marca", "Peso", "Valor"},
+				},
+				new String[] {
+					"Nome", "Marca", "Peso", "Valor"
+				}));
 		
 		DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
 		

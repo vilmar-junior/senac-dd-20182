@@ -16,5 +16,11 @@ CREATE TABLE `db_dev_desktop_20182`.`PRODUTO` (
   `CPF` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`ID`));
 
+  
+-- INSERTS
+INSERT INTO `db_dev_desktop_20182`.`PRODUTO` (`id`, `nome`, `fabricante`, `valor`, `peso`) VALUES ('1', 'Caneta', 'Bic', '1.5', '0.2');
+INSERT INTO `db_dev_desktop_20182`.`PRODUTO` (`id`, `nome`, `fabricante`, `valor`, `peso`) VALUES ('2', 'Lápis', 'Faber-Castell', '0.75', '0.22');
+INSERT INTO `db_dev_desktop_20182`.`PRODUTO` (`id`, `nome`, `fabricante`, `valor`, `peso`) VALUES ('3', 'Mouse', 'HP', '120', '0.35');
+
 
   
